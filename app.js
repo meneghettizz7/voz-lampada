@@ -221,116 +221,142 @@ function () {
 // INTERPRETAR COMANDO
 // =====================================
 
+
+// =====================================
+// INTERPRETAR COMANDO
+// =====================================
+
 function interpretarComando(texto) {
 
+    // ---------------------------------
+    // PISCAR A LUZ
+    // ---------------------------------
 
-// ---------------------------------
-// LIGAR
-// ---------------------------------
+    if (
+        texto.includes("piscar") ||
+        texto.includes("pisque") ||
+        texto.includes("flamengo") ||
+        texto.includes("zona") ||
+        texto.includes("festa")
+    ) {
 
-if (
-    texto.includes("acender") ||
-    texto.includes("acende") ||
-    texto.includes("ligar") ||
-    texto.includes("liga") ||
-    texto.includes("ligue")
-) {
+        textoVoz.textContent =
+            "✓ Comando reconhecido: piscando a luz";
 
-    controlarLuz(true);
+        piscarLuz();
+
+        return;
+    }
+
+
+    // ---------------------------------
+    // LIGAR
+    // ---------------------------------
+
+    if (
+        texto.includes("acender") ||
+        texto.includes("acende") ||
+        texto.includes("ligar") ||
+        texto.includes("liga") ||
+        texto.includes("ligue")
+    ) {
+
+        controlarLuz(true);
+
+        textoVoz.textContent =
+            "✓ Comando reconhecido: ligar";
+
+        return;
+    }
+
+
+    // ---------------------------------
+    // DESLIGAR
+    // ---------------------------------
+
+    if (
+        texto.includes("apagar") ||
+        texto.includes("apaga") ||
+        texto.includes("apague") ||
+        texto.includes("desligar") ||
+        texto.includes("desliga") ||
+        texto.includes("desligue")
+    ) {
+
+        controlarLuz(false);
+
+        textoVoz.textContent =
+            "✓ Comando reconhecido: desligar";
+
+        return;
+    }
+
+
+    // ---------------------------------
+    // COMANDO NÃO RECONHECIDO
+    // ---------------------------------
 
     textoVoz.textContent =
-        "✓ Comando reconhecido: ligar";
-
-    return;
-}
-
-//nnnnnnnnnnnnnnnnnnnnnnnnnnnn
-if (
-    texto.includes("piscar") ||
-    texto.includes("pisque") ||
-    texto.includes("flamengo") ||
-    texto.includes("zona") ||
-    texto.includes("festa")
-) {
-
-    piscarLuz();
-
-    textoVoz.textContent =
-        "✓ Comando reconhecido: piscar a luz";
-
-    return;
+        "Comando não reconhecido.";
 }
 
 
 // =====================================
-// FUNÇÃO PARA PISCAR A LUZ 3 VEZES
+// PISCAR A LUZ
 // =====================================
 
 async function piscarLuz() {
 
-    for (let contador = 0; contador < 3; contador++) {
+    console.log("Iniciando efeito de piscar...");
 
-        // LIGA
-        await controlarLuz(true);
+    try {
 
-        // Espera 500 ms
-        await esperar(500);
+        for (let i = 0; i < 3; i++) {
 
-        // DESLIGA
-        await controlarLuz(false);
+            console.log("Piscada:", i + 1);
 
-        // Espera 500 ms
-        await esperar(500);
+            // LIGA
+            await controlarLuz(true);
+
+            // Espera 1 segundo
+            await esperar(1000);
+
+            // DESLIGA
+            await controlarLuz(false);
+
+            // Espera 1 segundo
+            await esperar(1000);
+        }
+
+        textoVoz.textContent =
+            "✓ Luz piscou 3 vezes";
+
+        console.log("Efeito finalizado.");
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao piscar a luz:",
+            erro
+        );
+
+        textoVoz.textContent =
+            "Erro ao fazer a luz piscar.";
     }
-
 }
 
 
 // =====================================
-// FUNÇÃO DE ESPERA
+// ESPERA
 // =====================================
 
-function esperar(tempo) {
+function esperar(ms) {
 
-    return new Promise(resolve => {
-        setTimeout(resolve, tempo);
-    });
-
+    return new Promise(
+        resolve => setTimeout(resolve, ms)
+    );
 }
 
-
-
-// ---------------------------------
-// DESLIGAR
-// ---------------------------------
-
-if (
-    texto.includes("apagar") ||
-    texto.includes("apaga") ||
-    texto.includes("apague") ||
-    texto.includes("desligar") ||
-    texto.includes("desliga") ||
-    texto.includes("desligue")
-) {
-
-    controlarLuz(false);
-
-    textoVoz.textContent =
-        "✓ Comando reconhecido: desligar";
-
-    return;
-}
-
-
-// ---------------------------------
-// COMANDO NÃO ENCONTRADO
-// ---------------------------------
-
-textoVoz.textContent =
-    "Comando não reconhecido.";
-
-
-}
 
 // =====================================
 // ENVIAR ESTADO PARA O FIREBASE
@@ -338,36 +364,35 @@ textoVoz.textContent =
 
 async function controlarLuz(estado) {
 
+    try {
 
-try {
+        console.log(
+            "Enviando para Firebase:",
+            estado
+        );
 
-    await set(
-        luzRef,
-        estado
-    );
+        await set(
+            luzRef,
+            estado
+        );
 
+        console.log(
+            "Firebase atualizado:",
+            estado
+        );
 
-    console.log(
-        "Estado enviado:",
-        estado
-    );
+    } catch (erro) {
 
+        console.error(
+            "Erro ao enviar para Firebase:",
+            erro
+        );
 
-} catch (erro) {
-
-    console.error(
-        "Erro ao enviar para Firebase:",
-        erro
-    );
-
-
-    textoVoz.textContent =
-        "Erro ao conectar ao Firebase.";
-
+        throw erro;
+    }
 }
 
 
-}
 
 // =====================================
 // BOTÃO LIGAR
