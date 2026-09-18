@@ -252,19 +252,52 @@ if (
     texto.includes("zona") ||
     texto.includes("festa")
 ) {
-let contador = 0;
 
-while (contador < 3) {
-  controlarLuz(true);
-  controlarLuz(false);
-  contador++;
-}
+    piscarLuz();
 
     textoVoz.textContent =
-        "✓ Comando reconhecido: ligar";
+        "✓ Comando reconhecido: piscar a luz";
 
     return;
 }
+
+
+// =====================================
+// FUNÇÃO PARA PISCAR A LUZ 3 VEZES
+// =====================================
+
+async function piscarLuz() {
+
+    for (let contador = 0; contador < 3; contador++) {
+
+        // LIGA
+        await controlarLuz(true);
+
+        // Espera 500 ms
+        await esperar(500);
+
+        // DESLIGA
+        await controlarLuz(false);
+
+        // Espera 500 ms
+        await esperar(500);
+    }
+
+}
+
+
+// =====================================
+// FUNÇÃO DE ESPERA
+// =====================================
+
+function esperar(tempo) {
+
+    return new Promise(resolve => {
+        setTimeout(resolve, tempo);
+    });
+
+}
+
 
 
 // ---------------------------------
