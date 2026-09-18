@@ -244,6 +244,28 @@ if (
     return;
 }
 
+//nnnnnnnnnnnnnnnnnnnnnnnnnnnn
+if (
+    texto.includes("piscar") ||
+    texto.includes("pisque") ||
+    texto.includes("flamengo") ||
+    texto.includes("zona") ||
+    texto.includes("festa")
+) {
+let contador = 0;
+
+while (contador < 3) {
+  controlarLuz(true);
+  controlarLuz(false);
+  contador++;
+}
+
+    textoVoz.textContent =
+        "✓ Comando reconhecido: ligar";
+
+    return;
+}
+
 
 // ---------------------------------
 // DESLIGAR
