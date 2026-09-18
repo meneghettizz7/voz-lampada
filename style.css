@@ -1,0 +1,576 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+body {
+min-height: 100vh;
+
+
+display: flex;
+justify-content: center;
+align-items: center;
+
+font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+color: #ffffff;
+
+background:
+    radial-gradient(
+        circle at 50% 35%,
+        #3d0000 0%,
+        #1b0000 25%,
+        #090000 55%,
+        #020202 100%
+    );
+
+
+}
+
+.app {
+width: 100%;
+max-width: 500px;
+min-height: 720px;
+
+display: flex;
+flex-direction: column;
+
+padding: 25px;
+
+background:
+    rgba(10, 10, 10, 0.92);
+
+border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+border-radius: 28px;
+
+box-shadow:
+    0 30px 80px
+    rgba(0, 0, 0, 0.8);
+
+}
+
+/* =========================
+TOPO
+========================= */
+
+.topo {
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+
+font-size: 11px;
+
+letter-spacing: 1.2px;
+
+color: #777;
+
+}
+
+.status-conexao {
+display: flex;
+align-items: center;
+
+
+gap: 8px;
+
+
+}
+
+.ponto {
+width: 8px;
+height: 8px;
+
+
+border-radius: 50%;
+
+background: #28d46b;
+
+box-shadow:
+    0 0 10px
+    rgba(40, 212, 107, 0.8);
+
+}
+
+.firebase {
+color: #555;
+}
+
+/* =========================
+PRINCIPAL
+========================= */
+
+.principal {
+flex: 1;
+
+
+display: flex;
+flex-direction: column;
+
+align-items: center;
+justify-content: center;
+
+text-align: center;
+
+
+}
+
+/* =========================
+LÂMPADA
+========================= */
+
+.lampada {
+width: 170px;
+height: 170px;
+
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+margin-bottom: 28px;
+
+border-radius: 50%;
+
+background:
+    rgba(255, 255, 255, 0.035);
+
+border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+transition:
+    all 0.4s ease;
+
+
+}
+
+.lampada span {
+font-size: 78px;
+
+
+filter:
+    grayscale(1);
+
+opacity: 0.45;
+
+transition:
+    all 0.4s ease;
+
+
+}
+
+.lampada.ligada {
+background:
+radial-gradient(
+circle,
+rgba(255, 40, 40, 0.22),
+rgba(255, 0, 0, 0.04)
+);
+
+
+border-color:
+    rgba(255, 40, 40, 0.6);
+
+box-shadow:
+    0 0 60px
+    rgba(255, 0, 0, 0.2);
+
+
+}
+
+.lampada.ligada span {
+filter:
+grayscale(0);
+
+
+opacity: 1;
+
+transform:
+    scale(1.08);
+
+filter:
+    drop-shadow(
+        0 0 20px
+        rgba(255, 60, 0, 0.7)
+    );
+
+
+}
+
+/* =========================
+TÍTULO
+========================= */
+
+h1 {
+font-size: 32px;
+
+
+margin-bottom: 10px;
+
+font-weight: 700;
+
+
+}
+
+.descricao {
+color: #888;
+
+
+font-size: 14px;
+
+
+}
+
+/* =========================
+STATUS
+========================= */
+
+.status {
+margin-top: 25px;
+
+
+padding:
+    10px 20px;
+
+border-radius: 30px;
+
+font-size: 12px;
+
+font-weight: bold;
+
+letter-spacing: 1.5px;
+
+border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+color: #777;
+
+background:
+    rgba(255, 255, 255, 0.035);
+
+transition: 0.3s;
+
+
+}
+
+.status.ligada {
+color: #ff3030;
+
+
+background:
+    rgba(255, 0, 0, 0.08);
+
+border-color:
+    rgba(255, 0, 0, 0.3);
+
+box-shadow:
+    0 0 20px
+    rgba(255, 0, 0, 0.08);
+
+
+}
+
+/* =========================
+VOZ
+========================= */
+
+.voz {
+margin-top: 35px;
+
+
+display: flex;
+flex-direction: column;
+
+align-items: center;
+
+
+}
+
+.microfone {
+width: 82px;
+height: 82px;
+
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+border-radius: 50%;
+
+border:
+    2px solid
+    #d90000;
+
+background:
+    #170000;
+
+color: white;
+
+font-size: 31px;
+
+cursor: pointer;
+
+transition:
+    all 0.3s ease;
+
+
+}
+
+.microfone:hover {
+transform:
+scale(1.06);
+
+
+background:
+    #2a0000;
+
+box-shadow:
+    0 0 35px
+    rgba(255, 0, 0, 0.25);
+
+
+}
+
+.microfone.ouvindo {
+background:
+#d90000;
+
+
+border-color:
+    #ff4444;
+
+animation:
+    pulsar 1.2s infinite;
+
+
+}
+
+@keyframes pulsar {
+
+
+0% {
+    box-shadow:
+        0 0 0 0
+        rgba(255, 0, 0, 0.5);
+}
+
+70% {
+    box-shadow:
+        0 0 0 22px
+        rgba(255, 0, 0, 0);
+}
+
+100% {
+    box-shadow:
+        0 0 0 0
+        rgba(255, 0, 0, 0);
+}
+
+
+}
+
+.texto-voz {
+margin-top: 12px;
+
+
+color: #999;
+
+font-size: 13px;
+
+min-height: 18px;
+
+
+}
+
+/* =========================
+COMANDOS
+========================= */
+
+.comandos {
+margin-top: 25px;
+
+
+display: flex;
+flex-direction: column;
+
+align-items: center;
+
+gap: 7px;
+
+font-size: 12px;
+
+color: #555;
+
+
+}
+
+.comando {
+display: flex;
+align-items: center;
+
+
+gap: 8px;
+
+color: #999;
+
+font-size: 13px;
+
+
+}
+
+/* =========================
+BOTÕES
+========================= */
+
+.controles {
+display: flex;
+
+
+gap: 12px;
+
+margin-top: 30px;
+
+
+}
+
+.botao {
+min-width: 125px;
+
+
+padding:
+    13px 20px;
+
+border-radius: 10px;
+
+font-size: 12px;
+
+font-weight: bold;
+
+letter-spacing: 0.5px;
+
+cursor: pointer;
+
+transition:
+    all 0.2s ease;
+
+
+}
+
+.botao:hover {
+transform:
+translateY(-2px);
+}
+
+.ligar {
+border: none;
+
+
+background:
+    #d90000;
+
+color: white;
+
+box-shadow:
+    0 8px 25px
+    rgba(217, 0, 0, 0.2);
+
+
+}
+
+.ligar:hover {
+background:
+#ef0000;
+}
+
+.desligar {
+border:
+1px solid
+#333;
+
+
+background:
+    #151515;
+
+color: #aaa;
+
+
+}
+
+.desligar:hover {
+background:
+#202020;
+
+
+color: white;
+
+
+}
+
+/* =========================
+RODAPÉ
+========================= */
+
+footer {
+display: flex;
+justify-content: center;
+
+
+gap: 8px;
+
+padding-top: 15px;
+
+color: #444;
+
+font-size: 10px;
+
+letter-spacing: 0.5px;
+
+
+}
+
+/* =========================
+CELULAR
+========================= */
+
+@media (max-width: 520px) {
+
+
+body {
+    align-items: stretch;
+}
+
+.app {
+    min-height: 100vh;
+
+    border-radius: 0;
+
+    border: none;
+
+    padding:
+        22px 18px;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+.lampada {
+    width: 145px;
+    height: 145px;
+}
+
+.lampada span {
+    font-size: 68px;
+}
+
+
+}

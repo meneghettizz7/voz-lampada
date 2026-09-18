@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+
+<meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#080808">
+
+<meta name="description"
+    content="Controle sua lâmpada usando comandos de voz">
+
+<title>Controle de Luz</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="manifest" href="manifest.json">
+
+
+</head>
+
+<body>
+
+
+<div class="app">
+
+    <header class="topo">
+
+        <div class="status-conexao">
+            <span class="ponto"></span>
+            <span>SISTEMA ONLINE</span>
+        </div>
+
+        <span class="firebase">
+            FIREBASE
+        </span>
+
+    </header>
+
+
+    <main class="principal">
+
+        <div
+            id="iconeLampada"
+            class="lampada">
+
+            <span>💡</span>
+
+        </div>
+
+
+        <h1>Controle de Luz</h1>
+
+        <p class="descricao">
+            Controle sua lâmpada usando sua voz
+        </p>
+
+
+        <div
+            id="status"
+            class="status desligada">
+
+            LUZ DESLIGADA
+
+        </div>
+
+
+        <section class="voz">
+
+            <button
+                id="btnVoz"
+                class="microfone"
+                aria-label="Ativar reconhecimento de voz">
+
+                🎤
+
+            </button>
+
+
+            <p
+                id="textoVoz"
+                class="texto-voz">
+
+                Toque no microfone para falar
+
+            </p>
+
+        </section>
+
+
+        <section class="comandos">
+
+            <p>Comandos disponíveis</p>
+
+            <div class="comando">
+                <span>🎤</span>
+                <span>"Acender a luz"</span>
+            </div>
+
+            <div class="comando">
+                <span>🎤</span>
+                <span>"Apagar a luz"</span>
+            </div>
+
+        </section>
+
+
+        <section class="controles">
+
+            <button
+                id="btnLigar"
+                class="botao ligar">
+
+                <span>💡</span>
+                LIGAR
+
+            </button>
+
+
+            <button
+                id="btnDesligar"
+                class="botao desligar">
+
+                <span>○</span>
+                DESLIGAR
+
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <span>ESP32</span>
+        <span>•</span>
+        <span>Firebase Realtime Database</span>
+
+    </footer>
+
+</div>
+
+
+<script
+    type="module"
+    src="app.js">
+</script>
+
+
+</body>
+
+</html>

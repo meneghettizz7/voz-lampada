@@ -1,0 +1,11 @@
+{
+"name": "Controle de Luz",
+"short_name": "Luz",
+"description": "Controle de lâmpada usando voz, Firebase e ESP32.",
+"start_url": "./index.html",
+"display": "standalone",
+"background_color": "#080808",
+"theme_color": "#080808",
+"orientation": "portrait",
+"lang": "pt-BR"
+}
